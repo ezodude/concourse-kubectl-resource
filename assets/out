@@ -37,6 +37,7 @@ data=$(cat -)
 
 echo '=======Parsing source and params...'
 uri=$(echo $data | jq --raw-output .source.api_server_uri)
+skip_tls_verify=$(echo $data | jq --raw-output .source.skip_tls_verify)
 namespace=$(echo $data | jq -r .source.namespace)
 certificate_authority_data=$(echo $data | jq -r .source.certificate_authority_data)
 token=$(echo $data | jq -r .source.token)
@@ -54,6 +55,8 @@ uname=name1
 echo '=======Validating source details...'
 
 validateEmpty "Cluster API Server URI" $uri
+
+validateEmpty "Cluster Insecure Skip TLS Verify" $skip_tls_verify
 
 validateEmpty "Cluster namespace" $namespace
 
@@ -78,7 +81,7 @@ echo '=======params validated'
 echo
 
 echo '=======Configuring kubectl to connect to the target Kubernetes cluster...'
-kubectl config set-cluster $cluster --server=$uri
+kubectl config set-cluster $cluster --server=$uri --insecure-skip-tls-verify=$skip_tls_verify
 kubectl config set-context $context --cluster=$cluster --user=$uname --namespace=$namespace
 
 kubectl config set clusters.$cluster.certificate-authority-data $certificate_authority_data

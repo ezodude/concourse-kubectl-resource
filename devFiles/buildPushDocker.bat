@@ -1,3 +1,3 @@
 cd..
-docker build -t jmkarthik/concourse-kubectl-resource .
-docker push jmkarthik/concourse-kubectl-resource
+docker build -t ezodude/concourse-kubectl-resource .
+docker push ezodude/concourse-kubectl-resource

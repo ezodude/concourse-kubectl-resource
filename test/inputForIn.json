@@ -1,6 +1,7 @@
 {
     "source": {
         "api_server_uri": "uri",
+        "skip_tls_verify": true,
         "namespace": "ns",
         "certificate_authority_data": "cadata",
         "token": "token"

@@ -1,6 +1,7 @@
 {
     "source": {
         "api_server_uri": "asdfasdf",
+        "skip_tls_verify": true,
         "namespace": "ns",
         "certificate_authority_data": "YXNkZgo=",
         "token": "YXNkZgo="
